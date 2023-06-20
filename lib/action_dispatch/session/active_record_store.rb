@@ -119,7 +119,7 @@ module ActionDispatch
         logger.silence do
           model = get_session_with_fallback(id)
           unless model
-            id = generate_sid
+            id ||= generate_sid # id = generate_sid
             model = @@session_class.new(:session_id => id.private_id, :data => {})
             model.save
           end
